@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "easydiary",
-    "host": "127.0.0.1",
+    "username": "nu3tggxsnmknn9f3",
+    "password": "zwoyjvf8xo1k182g",
+    "database": "tyqyc0s23aq7w7io",
+    "host": "l6slz5o3eduzatkw.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {

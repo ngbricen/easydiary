@@ -1,77 +1,77 @@
-// // *********************************************************************************
-// // api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// // *********************************************************************************
+// *********************************************************************************
+// api-routes.js - this file offers a set of routes for displaying and saving data to the db
+// *********************************************************************************
 
-// // Dependencies
-// // =============================================================
+// Dependencies
+// =============================================================
 
-// // Requiring our models
-// var db = require("../models");
+// Requiring our models
+var db = require("../models");
 
-// // Routes
-// // =============================================================
-// module.exports = function(app) {
+// Routes
+// =============================================================
+module.exports = function(app) {
 
-//   // GET route for getting all of the posts
-//   app.get("/api/posts", function(req, res) {
-//     var query = {};
-//     if (req.query.author_id) {
-//       query.AuthorId = req.query.author_id;
-//     }
-//     // Here we add an "include" property to our options in our findAll query
-//     // We set the value to an array of the models we want to include in a left outer join
-//     // In this case, just db.Author
-//     db.Post.findAll({
-//       where: query,
-//       include: [db.Author]
-//     }).then(function(dbPost) {
-//       res.json(dbPost);
-//     });
-//   });
+  // GET route for getting all of the Diary
+  app.get("/api/diaries", function(req, res) {
+    var query = {};
+    if (req.query.user_id) {
+      query.userId = req.query.user_id;
+    }
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.user
+    db.diary.findAll({
+      where: query,
+      include: [db.user]
+    }).then(function(dbDiary) {
+      res.json(dbDiary);
+    });
+  });
 
-//   // Get rotue for retrieving a single post
-//   app.get("/api/posts/:id", function(req, res) {
-//     // Here we add an "include" property to our options in our findOne query
-//     // We set the value to an array of the models we want to include in a left outer join
-//     // In this case, just db.Author
-//     db.Post.findOne({
-//       where: {
-//         id: req.params.id
-//       },
-//       include: [db.Author]
-//     }).then(function(dbPost) {
-//       res.json(dbPost);
-//     });
-//   });
+  // Get rotue for retrieving a single Diary
+  app.get("/api/diaries/:id", function(req, res) {
+    // Here we add an "include" property to our options in our findOne query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.user
+    db.diary.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.user]
+    }).then(function(dbDiary) {
+      res.json(dbDiary);
+    });
+  });
 
-//   // POST route for saving a new post
-//   app.post("/api/posts", function(req, res) {
-//     db.Post.create(req.body).then(function(dbPost) {
-//       res.json(dbPost);
-//     });
-//   });
+  // Diary route for saving a new Diary
+  app.post("/api/diaries", function(req, res) {
+    db.diary.create(req.body).then(function(dbDiary) {
+      res.json(dbDiary);
+    });
+  });
 
-//   // DELETE route for deleting posts
-//   app.delete("/api/posts/:id", function(req, res) {
-//     db.Post.destroy({
-//       where: {
-//         id: req.params.id
-//       }
-//     }).then(function(dbPost) {
-//       res.json(dbPost);
-//     });
-//   });
+  // DELETE route for deleting Diarys
+  app.delete("/api/diaries/:id", function(req, res) {
+    db.diary.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbDiary) {
+      res.json(dbDiary);
+    });
+  });
 
-//   // PUT route for updating posts
-//   app.put("/api/posts", function(req, res) {
-//     db.Post.update(
-//       req.body,
-//       {
-//         where: {
-//           id: req.body.id
-//         }
-//       }).then(function(dbPost) {
-//         res.json(dbPost);
-//       });
-//   });
-// };
+  // PUT route for updating Diarys
+  app.put("/api/diaries", function(req, res) {
+    db.Diary.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbDiary) {
+        res.json(dbDiary);
+      });
+  });
+};
