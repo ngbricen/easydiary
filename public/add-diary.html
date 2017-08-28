@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>easyDiary</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <!-- Top Menu -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+     
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">easyDiary</a>
+      </div>
+
+     
+      <div>
+        <form id="signin" class="navbar-form navbar-right" role="form">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input id="email" type="email" class="form-control" name="email" value="" placeholder="Email Address">                                        
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">                                        
+          </div>
+                          
+          <button type="submit" class="btn btn-primary">Login</button>
+                          
+          <div class="etc-login-form">
+              <span>New User? <a href="signup.html">create new account</a></span>
+              <span>Forgot Password? <a href="reset.html">reset password</a></span>
+          </div>
+      </form>
+      </div>
+    </div>
+  </nav>
+  <!-- Main Body -->
+  <div class="container hidden">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form id="entry">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input placeholder="Diary Title" type="text" class="form-control" id="title">
+            <br />
+            <label for="body">Body:</label>
+            <textarea placeholder="Diary Body" class="form-control" rows="3" id="body"></textarea>
+            <br />
+            <label><input type="checkbox" id="isPublic">Make Diary Public?</label>
+            <button type="submit" class="btn btn-success submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-3">Mr. Nguoghia <a href="https://github.com/ngbricen"><img class="socialMediaIcon" src="./assets/images/github.svg" alt="GitHub"/></a>
+          <span class="socialMediaIcon"><a href="https://www.linkedin.com/in/bricenguoghia/"><img class="socialMediaIcon" src="./assets/images/linkedin.svg" alt="GitHub"/></a>
+        </div>
+        <div class="col-xs-6 col-sm-3">Mr. Mir <a href="https://github.com/mirshamsur"><img class="socialMediaIcon" src="./assets/images/github.svg" alt="GitHub"/></a>
+          <span class="socialMediaIcon"><a href="https://www.linkedin.com/in/shamsur-mir-3551b813a/"><img class="socialMediaIcon" src="./assets/images/linkedin.svg" alt="GitHub"/></a>
+        </div>
+        <div class="col-xs-6 col-sm-3">Mr. Ekwevugbe <a href="https://github.com/neroxxpips"><img class="socialMediaIcon" src="./assets/images/github.svg" alt="GitHub"/></a>
+          <span class="socialMediaIcon"><a href="https://www.linkedin.com/in/oghenero-ekwevugbe-11224613b/"><img class="socialMediaIcon" src="./assets/images/linkedin.svg" alt="GitHub"/></a>
+        </div>
+        <div class="col-xs-6 col-sm-3">Mr. Bashirian <a href="https://github.com//jack2017coding"><img class="socialMediaIcon" src="./assets/images/github.svg" alt="GitHub"/></a>
+          <span class="socialMediaIcon"><a href="https://www.linkedin.com/in/jack-bashirian-p-e-20309b38/"><img class="socialMediaIcon" src="./assets/images/linkedin.svg" alt="GitHub"/></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Custom Script -->
+  <script src="../js/add-diary.js" type="text/javascript"></script>
+
+</body>
+
+</html>

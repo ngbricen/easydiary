@@ -27,9 +27,18 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/reset.html"));
   });
 
-  // authors route loads author-manager.html
-  app.get("/diary", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/diary.html"));
+  // route loads edit-diary.html
+  app.get("/add-diary", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/add-diary.html"));
   });
 
+  // route loads view-diary.html
+  app.get("/view-diary", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/view-diary.html"));
+  });
+
+    // route loads login.html
+  app.get("/login", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
 };

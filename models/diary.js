@@ -12,10 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       len: [1]
     },
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    },
+    // isActive: {
+    //   type: DataTypes.BOOLEAN,
+    //   defaultValue: true
+    // },
     isPublic: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

@@ -26,13 +26,14 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
+require("./routes/diary-api-routes.js")(app);
 require("./routes/html-routes.js")(app);
-// require("./routes/author-api-routes.js")(app);
-require("./routes/post-api-routes.js")(app);
+require("./routes/user-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
+	require('./db/seed.js')(db);
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
