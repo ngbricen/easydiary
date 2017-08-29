@@ -1,83 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
   <title>easyDiary</title>
-
-	<!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Link to CSS -->
-	<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-	
-	<!-- Link to Google fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Josefin+Slab" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css" type="text/css" />
 </head>
 
 <body>
-	<!-- Navbar -->
-  <nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="navbar">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" id="navbarHeader" href="#">easyDiary</a>
-  </nav>
-
-  <div class="container">
-
-    <!-- Main Row -->
-    <div class="row">
-    
-      <!-- Welcome Info Column -->
-      <div class="col-md-6">
-        <div class="welcomeDiv">
-          <h1 class="welcome">Welcome!</h1>
-          <br>
-          <h3 class="welcomeInfo">
-            <p>Welcome to easyDiary to keep memoirs, words, and thoughts.</p> 
-           </h3>
-        </div>
-      </div>      
-
-      <!-- Sign Up Column -->
-      <div class="col-md-6">
-      	<form class="signup">
-      	<h1 class="signUpTitle">Sign Up</h1>
-      	<div class="form-group">
-          <label for="inputName" class="signUpLabel">Name</label>
-          <input type="text" class="form-control" id="inputName" placeholder="Name">
-        </div>
-        <div class="form-group">
-          <label for="inputEmail" class="signUpLabel">Email address</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <label for="inputPassword" class="signUpLabel">Password</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
-
-        <div class="form-group">
-          <button type="submit" class="btn btn-secondary float-right" id="signUpButton">Sign Up</button>
-        </div>
-        <br><br>
-      
-       <span id="existMem">Already a member? <a href="/login">Login Here</a>
-      </span>
-        </form>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">easyDiary</a>
       </div>
+      <span class="text-right" id="userWelcome" display="none"></span>
+    </div>
+  </nav>
+  <!-- Main Row -->
+  <div class="row">  
+    <!-- Welcome Info Column -->
+    <div class="col-md-12">
+      <div class="welcomeDiv">
+        <h3 class="welcomeInfo">
+          <p>Welcome to easyDiary to keep memoirs, words, and thoughts.</p> 
+         </h3>
+      </div>
+    </div>      
+  </div>
+  <div class="row">  
+    <!-- Sign Up Column -->
+    <div class="col-md-12">
+    	<form id="signup" class="navbar-form text-center" role="form">
+      	<h1 class="signUpTitle">Sign Up</h1>
+      	<div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input type="text" class="form-control" name="name" id="inputName" placeholder="Name">
+        </div>
+        <p></p>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input type="email" class="form-control" name="Email" id="inputEmail" placeholder="Email">
+        </div>
+        <p></p>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-secondary float-right" id="signUpButton">Sign Up</button>
+        <p></p>
+      
+        <span id="existMem">Already a member? <a href="/login">Login Here</a></span>
+      </form>
     </div>
   </div>
 
-  <footer class="footer">
-    <div class="container">
-      <span class="text-muted">&copy; </span>
+  <!-- Footer -->
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-3">Mr. Nguoghia <a href="https://github.com/ngbricen"><img class="socialMediaIcon" src="./assets/images/github.svg" alt="GitHub"/></a>
+          <span class="socialMediaIcon"><a href="https://www.linkedin.com/in/bricenguoghia/"><img class="socialMediaIcon" src="./assets/images/linkedin.svg" alt="GitHub"/></a>
+        </div>
+        <div class="col-xs-6 col-sm-3">Mr. Mir <a href="https://github.com/mirshamsur"><img class="socialMediaIcon" src="./assets/images/github.svg" alt="GitHub"/></a>
+          <span class="socialMediaIcon"><a href="https://www.linkedin.com/in/shamsur-mir-3551b813a/"><img class="socialMediaIcon" src="./assets/images/linkedin.svg" alt="GitHub"/></a>
+        </div>
+        <div class="col-xs-6 col-sm-3">Mr. Ekwevugbe <a href="https://github.com/neroxxpips"><img class="socialMediaIcon" src="./assets/images/github.svg" alt="GitHub"/></a>
+          <span class="socialMediaIcon"><a href="https://www.linkedin.com/in/oghenero-ekwevugbe-11224613b/"><img class="socialMediaIcon" src="./assets/images/linkedin.svg" alt="GitHub"/></a>
+        </div>
+        <div class="col-xs-6 col-sm-3">Mr. Bashirian <a href="https://github.com//jack2017coding"><img class="socialMediaIcon" src="./assets/images/github.svg" alt="GitHub"/></a>
+          <span class="socialMediaIcon"><a href="https://www.linkedin.com/in/jack-bashirian-p-e-20309b38/"><img class="socialMediaIcon" src="./assets/images/linkedin.svg" alt="GitHub"/></a>
+        </div>
+      </div>
     </div>
   </footer>
-
+  <!-- Custom Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
+  <script src="../js/signup.js" type="text/javascript"></script>
 </body>
 </html>

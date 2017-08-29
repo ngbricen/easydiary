@@ -41,39 +41,3 @@ $(document).ready(function() {
   }
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $(document).ready(function() {
-
-// 	// This function grabs diaries from the database and updates the view
-//   function getdiaries(user) {
-//     userId = user || "";
-//     if (userId) {
-//       userId = "/?user_id=" + userId;
-//     }
-//     $.get("/api/diaries" + userId, function(data) {
-//       console.log("diaries", data);
-//       diaries = data;
-//       if (!diaries || !diaries.length) {
-//         displayEmpty(user);
-//       }
-//       else {
-//         initializeRows();
-//       }
-//     });
-//   }
-// }
