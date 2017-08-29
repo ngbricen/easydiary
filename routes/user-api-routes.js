@@ -42,7 +42,9 @@ module.exports = function(app) {
     });
   });
 
+  //Creating a new user!
   app.post("/api/users", function(req, res) {
+    console.log(req.body);
     db.User.create(req.body).then(function(dbUser) {
       res.json(dbUser);
     });

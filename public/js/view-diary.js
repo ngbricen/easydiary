@@ -1,6 +1,10 @@
 $(document).ready(function() {
   /* global moment */
 
+// Getting references to the email and password
+  var emailInput = $("#email");
+  var pwdInput = $("#password");
+
   // diaryContainer holds all of our diaries
   var diaryContainer = $(".diary-container");
 
@@ -8,6 +12,7 @@ $(document).ready(function() {
   $(document).on("click", "button.delete", handleDiaryDelete);
   $(document).on("click", "button.edit", handleDiaryEdit);
   $(document).on("click", "button.public", handleDiaryPublic);
+  $(document).on("click", "button.login", handleDiaryLogin);
 
   // Variable to hold our diaries
   var diaries;
@@ -35,24 +40,26 @@ $(document).ready(function() {
     $.get("/api/diaries/" + userId, function(data) {
       console.log("diaries", data);
       diaries = data;
-      if (diaries) {
-        //If the user is found, display the user's name
-        if (userId){
-          if (!diaries[0].Diaries.length){
-            user = diaries[0].name;
-            displayEmpty(user, true);
-          }
-          else{
-            initializeRows();
-          }
+      
+      //Only execute the 2nd condition statement if a userId was entered
+      if (diaries.length === 0 || (userId && diaries[0].Diaries.length === 0)){
+        //If no user id, data is retrieved directly from the Diaries table
+        if (userId){  
+          //Update the login Message
+          $("#userWelcome").html("Welcome <strong>" + diaries[0].name + "</strong>");
+          $("#signin").hide();
+
+          //Display that no diaries for specific user
+          user = diaries[0].name;
+          displayEmpty(user, true);
+        }else{
+          //Display that no diaries have been entered
+          displayEmpty(user, false);
         }
-        else{
-          initializeRows();
-        } 
       }
-      else {
-        displayEmpty(userId, false);
-      }
+      else{
+        initializeRows();
+      }    
     });
   }
 
@@ -87,10 +94,14 @@ $(document).ready(function() {
     var diariesToDisplay = [];
 
     //If a user is being passed in, display only the diary entry for that user,
-    //Otherwise display all the entries that have been set public   
     if (userId){
-      diariesToDisplay = diaries[0].Diaries.filter(function (el) {return (el.UserId === parseInt(userId))});;
+      diariesToDisplay = diaries[0].Diaries.filter(function (el) {return (el.UserId === parseInt(userId))});
+
+      //Update the login Message
+      $("#userWelcome").html("Welcome <strong>" + diaries[0].name + "</strong>");
+      $("#signin").hide();
     }
+    //Otherwise display all the entries that have been set public   
     else{
       diariesToDisplay = diaries.filter(function (el) {return (el.isPublic === true)});;
     } 
@@ -182,15 +193,34 @@ $(document).ready(function() {
     changeDiaryVisbility(currentDiary);
   }
 
+// This function allows the user to log on and review his own postings
+  function handleDiaryLogin() {
+    event.preventDefault();
+    // Don't do anything if the name fields hasn't been filled out
+    if (!emailInput.val().trim() || !pwdInput.val().trim()) {
+      return;
+    }
+    else{
+      user = "/" + emailInput.val().trim() + "/" + pwdInput.val().trim();
+      $.get("/users" + user, function(data) {
+        console.log(data);
+        if (!data) {
+          //If no user, redirect user towards the login page
+          window.location.href = "/login";
+        }
+        else {
+          window.location.href = "/view-diary/?user_id=" + data.id;
+        }
+      });
+    }
+  }
+
   // This function displays a messgae when there are no diaries
   function displayEmpty(id, isUserFound) {
     var query = window.location.search;
     var partial = "";
     if (id && isUserFound) {
-      partial = " for " + id;
-      //Update the login Message
-      $("#userWelcome").html("Welcome <strong>" + id + "</strong>");
-      $("#signin").hide();
+      partial = " for you, " + id;
     }
     else if (id && !isUserFound) {
       partial = " for User #" + id;
@@ -199,7 +229,7 @@ $(document).ready(function() {
     diaryContainer.empty();
     var messageh2 = $("<h2>");
     messageh2.css({ "text-align": "center", "margin-top": "50px" });
-    messageh2.html("No diaries yet" + partial + ", navigate <a href='/add-diary" + query +
+    messageh2.html("No <u>public</u> diaries yet" + partial + ", navigate <a href='/add-diary" + query +
     "'>here</a> in order to get started.");
     diaryContainer.append(messageh2);
   }
