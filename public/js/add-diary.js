@@ -92,7 +92,8 @@ $(document).ready(function() {
         userId = data.id;
         // If we have a diary with this id, set a flag for us to know to update the post
         // when we hit submit
-        
+        $("#userWelcome").html("Welcome <strong>" + data.name + "</strong>");
+        $("#signin").hide();
 
         //Display diary container for data entry
         $(".hidden").removeClass("hidden");
