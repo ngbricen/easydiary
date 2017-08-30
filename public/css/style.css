@@ -65,10 +65,10 @@ button.edit, button.public {
   font-weight: bold;
 }
 
-footer {
+.footer {
   padding-bottom: 15px;
   border-top: 1px solid #dbdbdb;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   height: 40px;
   width: 100%;
