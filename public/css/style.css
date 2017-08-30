@@ -51,3 +51,25 @@ button.edit, button.public {
 .top-30 {
   margin-top: 30px;
 }
+
+.welcomeInfo {
+  text-align: center;
+  font-style: italic;
+}
+
+.socialMediaIcon {
+  max-width: 16px;
+}
+
+.signUpTitle {
+  font-weight: bold;
+}
+
+footer {
+  padding-bottom: 15px;
+  border-top: 1px solid #dbdbdb;
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+}
