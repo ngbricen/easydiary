@@ -72,6 +72,9 @@ $(document).ready(function() {
     });
   }
 
+
+  $(document).on("click", "button.logout", handleDiaryLogout);
+
   // Gets diary data for the current diary if we're editing, or if we're adding to an author's existing posts
   function getDiaryData(id, type) {
     var queryUrl;
@@ -86,13 +89,22 @@ $(document).ready(function() {
       default:
         return;
     }
+
+
     $.get(queryUrl, function(data) {
       if (data) {
+        console.log(data);
         console.log(data.id);
         userId = data.id;
+
+        //Update the login Message and logout button
+        var logoutBtn = $("<button>");
+        logoutBtn.text("Logout");
+        logoutBtn.addClass("logout btn btn-info");
+
         // If we have a diary with this id, set a flag for us to know to update the post
         // when we hit submit
-        $("#userWelcome").html("Welcome <strong>" + data.name + "</strong>");
+        $("#userWelcome").html("Welcome <strong>" + data.name + "</strong>   ").append(logoutBtn);
         $("#signin").hide();
 
         //Display diary container for data entry
@@ -100,6 +112,11 @@ $(document).ready(function() {
       }
     });
   }
+
+   // This function figures out which Diary we want to edit and takes it to the appropriate url
+  function handleDiaryLogout() {
+    window.location.href = "/";
+  };
 
   // Update a given Diary, bring user to the blog page when done
   function updateDiary(diary) {

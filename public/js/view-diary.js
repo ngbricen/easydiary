@@ -227,7 +227,7 @@ $(document).ready(function() {
 
   // This function figures out which Diary we want to edit and takes it to the appropriate url
   function handleDiaryLogout() {
-    window.location.href = "/view-diary";
+    window.location.href = "/";
   }
 
   // This function updates the add diary link if the user Id is available
