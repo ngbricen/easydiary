@@ -72,4 +72,27 @@ button.edit, button.public {
   bottom: 0;
   height: 40px;
   width: 100%;
+  background-color: whitesmoke;
 }
+
+body {
+  background: url("../images/photo2.jpg")repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h2 {
+  text-align: center;
+  font-style: italic;
+}
+
+.navbar-brand {
+  font-size: 200%;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+}
+
+
