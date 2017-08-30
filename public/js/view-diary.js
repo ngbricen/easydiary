@@ -13,6 +13,8 @@ $(document).ready(function() {
   $(document).on("click", "button.edit", handleDiaryEdit);
   $(document).on("click", "button.public", handleDiaryPublic);
   $(document).on("click", "button.login", handleDiaryLogin);
+  $(document).on("click", "button.logout", handleDiaryLogout);
+  $(document).on("click", "#addDiary", handleDiaryAddDiary);
 
   // Variable to hold our diaries
   var diaries;
@@ -44,9 +46,13 @@ $(document).ready(function() {
       //Only execute the 2nd condition statement if a userId was entered
       if (diaries.length === 0 || (userId && diaries[0].Diaries.length === 0)){
         //If no user id, data is retrieved directly from the Diaries table
-        if (userId){  
-          //Update the login Message
-          $("#userWelcome").html("Welcome <strong>" + diaries[0].name + "</strong>");
+        if (userId){
+          //Update the login Message and logout button
+          var logoutBtn = $("<button>");
+          logoutBtn.text("Logout");
+          logoutBtn.addClass("logout btn btn-info");
+
+          $("#userWelcome").html("Welcome <strong>" + diaries[0].name + "</strong>  ").append(logoutBtn);
           $("#signin").hide();
 
           //Display that no diaries for specific user
@@ -97,8 +103,12 @@ $(document).ready(function() {
     if (userId){
       diariesToDisplay = diaries[0].Diaries.filter(function (el) {return (el.UserId === parseInt(userId))});
 
-      //Update the login Message
-      $("#userWelcome").html("Welcome <strong>" + diaries[0].name + "</strong>");
+      //Update the login Message and logout button
+      var logoutBtn = $("<button>");
+      logoutBtn.text("Logout");
+      logoutBtn.addClass("logout btn btn-info");
+
+      $("#userWelcome").html("Welcome <strong>" + diaries[0].name + "</strong>  ").append(logoutBtn);;
       $("#signin").hide();
     }
     //Otherwise display all the entries that have been set public   
@@ -139,7 +149,7 @@ $(document).ready(function() {
     var newDiaryTitle = $("<h2>");
     var newDiaryDate = $("<small>");
     var newDiaryUser = $("<h5>");
-    newDiaryUser.text("Written by: " + diaries.name);
+    newDiaryUser.text("Written by: " + diaries[0].name);
     newDiaryUser.css({
       float: "right",
       color: "blue",
@@ -212,6 +222,21 @@ $(document).ready(function() {
           window.location.href = "/view-diary/?user_id=" + data.id;
         }
       });
+    }
+  }
+
+  // This function figures out which Diary we want to edit and takes it to the appropriate url
+  function handleDiaryLogout() {
+    window.location.href = "/view-diary";
+  }
+
+  // This function updates the add diary link if the user Id is available
+  function handleDiaryAddDiary() {
+    if (userId){
+      $(this).attr("href","/add-diary?user_id=" + userId);
+    }
+    else{
+       $(this).attr("href","/add-diary");
     }
   }
 
