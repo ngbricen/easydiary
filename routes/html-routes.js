@@ -23,9 +23,9 @@ module.exports = function(app) {
   });
 
   // blog route loads reset.html to reset password
-  app.get("/reset", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/reset.html"));
-  });
+  // app.get("/reset", function(req, res) {
+  //   res.sendFile(path.join(__dirname, "../public/reset.html"));
+  // });
 
   // route loads edit-diary.html
   app.get("/add-diary", function(req, res) {
