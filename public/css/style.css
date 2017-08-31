@@ -51,3 +51,25 @@ button.edit, button.public {
 .top-30 {
   margin-top: 30px;
 }
+
+.panel.col-md-3.panel-default{
+  margin:20px;
+}
+
+.btn{
+  padding: 3px 6px;
+}
+
+.panel-default>.panel-heading {
+  background-color: transparent;
+}
+
+h3 small{
+  font-size: 55%;
+  float: right;
+  padding-top: 3px; 
+}
+
+h5{
+  font-weight: bold;
+}

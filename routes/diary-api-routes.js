@@ -26,8 +26,8 @@ module.exports = function(app) {
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.user
     db.Diary.findAll({
-      where: query
-      //include: [db.user]
+      where: query,
+      include: [db.User]
     }).then(function(dbDiary) {
       res.json(dbDiary);
     });
@@ -40,6 +40,18 @@ module.exports = function(app) {
         id: req.params.id
       },
       include: [db.Diary]
+    }).then(function(dbDiary) {
+      res.json(dbDiary);
+    });
+  });
+
+  // Get for retrieving single diaries from a single user
+  app.get("/api/diary/:id", function(req, res) {
+    db.Diary.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.User]
     }).then(function(dbDiary) {
       res.json(dbDiary);
     });
