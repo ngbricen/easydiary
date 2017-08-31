@@ -13,6 +13,8 @@ console.log('process.env.NODE_ENV (in index.js) = ' + process.env.NODE_ENV);
 var sequelize;
 if (config.use_env_variable) {
   console.log('HERE 1, config.use_env_variable = ' + config.use_env_variable);
+  console.log('HERE 1, process.env = ' + process.env[config.use_env_variable]);
+  console.log('HERE 1, process.env = ' + process.env.JAWSDB_URL);
   sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
   console.log('HERE 2, config.use_env_variable = ' + config.use_env_variable);
