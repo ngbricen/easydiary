@@ -73,6 +73,7 @@ button.edit, button.public {
   height: 40px;
   width: 100%;
   background-color: whitesmoke;
+  text-align: center;
 }
 
 body {
