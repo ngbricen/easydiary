@@ -1,12 +1,31 @@
+function myFunc() {
+  var input, filter, table, tr, td, i;
+  input = $("#searchInput");
+  filter = input.val().toUpperCase();
+  
+  diaryBlock = $(".diary-container")[0].childNodes;
+  
+  for (i = 0; i < diaryBlock.length; i++) {
+    db = diaryBlock[i];
+
+    if (db.textContent.toUpperCase().indexOf(filter) > -1) {
+      db.style.display = "";
+    } else {
+      db.style.display = "none";
+    }
+  }
+}
+
 $(document).ready(function() {
   /* global moment */
-
 // Getting references to the email and password
   var emailInput = $("#email");
   var pwdInput = $("#password");
 
   // diaryContainer holds all of our diaries
   var diaryContainer = $(".diary-container");
+
+
 
   // Click events for the edit and delete buttons
   $(document).on("click", "button.delete", handleDiaryDelete);
@@ -32,6 +51,7 @@ $(document).ready(function() {
     getdiaries();
   }
 
+  
 
   // This function grabs diaries from the database and updates the view
   function getdiaries(user) {
@@ -127,45 +147,49 @@ $(document).ready(function() {
     var formattedDate = new Date(diary.createdAt);
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
     var newDiaryPanel = $("<div>");
-    newDiaryPanel.addClass("panel panel-default");
+    newDiaryPanel.addClass("panel col-md-3 panel-default");
     var newDiaryPanelHeading = $("<div>");
     newDiaryPanelHeading.addClass("panel-heading");
     var deleteBtn = $("<button>");
-    deleteBtn.text("x");
-    deleteBtn.addClass("delete btn btn-danger");
+    deleteBtn.addClass("delete btn btn-danger glyphicon glyphicon-remove");
     var editBtn = $("<button>");
-    editBtn.text("EDIT");
-    editBtn.addClass("edit btn btn-info");
+    editBtn.addClass("edit btn btn-info glyphicon glyphicon-pencil");
     var publicBtn = $("<button>");
 
     //If Diary is public, change the the display appropriately
     if (diary.isPublic){
-      publicBtn.text("Make Private");
+      // publicBtn.text("Make Private");
+      publicBtn.addClass("public btn btn-info glyphicon glyphicon-eye-open");
     }
     else{
-      publicBtn.text("Make Public"); 
+      publicBtn.addClass("public btn btn-info glyphicon glyphicon-eye-close");
     }
-    publicBtn.addClass("public btn btn-info");
-    var newDiaryTitle = $("<h2>");
-    var newDiaryDate = $("<small>");
-    var newDiaryUser = $("<h5>");
-    newDiaryUser.text("Written by: " + diaries[0].name);
-    newDiaryUser.css({
-      float: "right",
-      color: "blue",
-      "margin-top":
-      "-10px"
-    });
-    var newDiaryPanelBody = $("<div>");
-    newDiaryPanelBody.addClass("panel-body");
-    var newDiaryBody = $("<p>");
-    newDiaryTitle.text(diary.title + " ");
-    newDiaryBody.text(diary.body);
+    
+    var newDiaryTitle = $("<br><h3>");
+    var newDiaryLink = $("<a>");
+    var newDiaryDate = $("<br><small>");
     newDiaryDate.text(formattedDate);
-    newDiaryTitle.append(newDiaryDate);
-    newDiaryPanelHeading.append(deleteBtn);
-    newDiaryPanelHeading.append(editBtn);
-    newDiaryPanelHeading.append(publicBtn);
+    var newDiaryUser = $("<br><h5>");
+    if (userId){
+      newDiaryUser.text(diaries[0].name + " - " + formattedDate);
+    }
+    else{
+      newDiaryUser.text(diary.User.name + " - " + formattedDate); 
+    }
+    var newDiaryPanelBody = $("<div>");
+    newDiaryPanelBody.addClass("panel-body fixed-panel");
+    var newDiaryBody = $("<p>");
+    newDiaryLink.text(diary.title);
+    newDiaryLink.attr("href","/add-diary?diary_id=" + diary.id + "&user_id=" + userId);
+    newDiaryTitle.append(newDiaryLink);
+    newDiaryBody.text(diary.body);
+    // newDiaryTitle.append(newDiaryDate);
+    //Only Display edit buttons if the user is logged on
+    if (userId){
+      newDiaryPanelHeading.append(deleteBtn);
+      newDiaryPanelHeading.append(editBtn);
+      newDiaryPanelHeading.append(publicBtn);
+    }
     newDiaryPanelHeading.append(newDiaryTitle);
     newDiaryPanelHeading.append(newDiaryUser);
     newDiaryPanelBody.append(newDiaryBody);
@@ -190,7 +214,7 @@ $(document).ready(function() {
       .parent()
       .parent()
       .data("Diary");
-    window.location.href = "/add-diary?diary_id=" + currentDiary.id;
+    window.location.href = "/add-diary?diary_id=" + currentDiary.id + "&user_id=" + userId;
   }
 
   // This function figures out which Diary we want to make public and runs the updation
@@ -258,5 +282,7 @@ $(document).ready(function() {
     "'>here</a> in order to get started.");
     diaryContainer.append(messageh2);
   }
+
+  
 
 });

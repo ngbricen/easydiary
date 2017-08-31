@@ -52,6 +52,37 @@ button.edit, button.public {
   margin-top: 30px;
 }
 
+.panel.col-md-3.panel-default{
+  margin-right: 20px;
+}
+
+.panel.col-md-3.panel-default:nth-of-type(even){
+  background-color: snow;
+}
+
+.panel.col-md-3.panel-default:nth-of-type(odd){
+  background-color: cornsilk;
+}
+
+.btn{
+  padding: 3px 6px;
+  margin-left: 10px;
+}
+
+.panel-default>.panel-heading {
+  background-color: transparent;
+}
+
+h3 small{
+  font-size: 55%;
+  float: right;
+  padding-top: 3px; 
+}
+
+h5{
+  font-style: italic;
+}
+
 .welcomeInfo {
   text-align: center;
   font-style: italic;
@@ -90,10 +121,32 @@ h2 {
 }
 
 .navbar-brand {
-  font-size: 200%;
+  font-size: 250%;
   text-align: center;
   font-style: italic;
   font-weight: bold;
+  padding-left: 200px;
+  padding-top: 20px;
+  font-family: serif;
 }
 
+.fixed-panel{
+  height: 100px;
+  overflow-y: scroll;
+}
 
+textarea.form-control {
+    height: 270px;
+}
+input#searchInput.form-control{
+  height: 50px;
+  border-radius: 30px;
+}
+
+a.btn.btn-default{
+  border-radius: 30px;
+  width: 100%;
+  height: 50px;
+  padding-top: 13px;
+  margin-left: 30px;
+}

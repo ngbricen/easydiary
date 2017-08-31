@@ -10,15 +10,26 @@ $(document).ready(function() {
   var url = window.location.search;
   var diaryId;
   var userId;
+  var userPortion;
+  var diaryPortion
 
 
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
 
   // If we have this section in our url, we pull out the post id from the url
-  // In '?diary_id=1', diaryId is 1
+  // If user and diary information were passed in
   if (url.indexOf("?diary_id=") !== -1) {
-    diaryId = url.split("=")[1];
+    if (url.indexOf("&user_id=") !== -1){
+      diaryPortion = url.split("&")[0];
+      userPortion = url.split("&")[1];
+      diaryId = diaryPortion.split("=")[1];
+      userId = userPortion.split("=")[1];
+    }
+     // If only diary information was passed in
+    else{
+      diaryId = url.split("=")[1]; 
+    }
     getDiaryData(diaryId, "diary");
   }
   // Otherwise if we have an user_id in our url, use this id to save to the database as the editor of diary
@@ -29,7 +40,13 @@ $(document).ready(function() {
 
   //Redirect to log in if the user was not entered
   if (!userId){
-    window.location.href = "/login";
+    if (diaryId){
+      $("#diarySubmit")[0].disabled = true;
+    }
+    else{
+      window.location.href = "/login";
+      $("#diarySubmit").disabled = false;
+    }
   }
 
 
@@ -80,7 +97,7 @@ $(document).ready(function() {
     var queryUrl;
     switch (type) {
       case "diary":
-        queryUrl = "/api/diaries/" + id;
+        queryUrl = "/api/diary/" + id;
         updating = true;
         break;
       case "user":
@@ -93,9 +110,19 @@ $(document).ready(function() {
 
     $.get(queryUrl, function(data) {
       if (data) {
-        console.log(data);
-        console.log(data.id);
-        userId = data.id;
+        var userName;
+
+        //Different Get queries are run depending on whether or not we are updating or adding a new record
+        if (updating){
+          userName = data.User.name;
+          titleInput.val(data.title);
+          bodyInput.val(data.body);
+          isPublicInput[0].checked = data.isPublic;
+          $("#diarySubmit")[0].textContent = "Update";
+        }
+        else{
+          userName = data.name;
+        }
 
         //Update the login Message and logout button
         var logoutBtn = $("<button>");
@@ -104,11 +131,14 @@ $(document).ready(function() {
 
         // If we have a diary with this id, set a flag for us to know to update the post
         // when we hit submit
-        $("#userWelcome").html("Welcome <strong>" + data.name + "</strong>   ").append(logoutBtn);
-        $("#signin").hide();
-
+        if (userId){
+          $("#userWelcome").html("Welcome <strong>" + userName + "</strong>").append(logoutBtn);
+          $("#signin").hide();
+        }
+        
         //Display diary container for data entry
         $(".hidden").removeClass("hidden");
+
       }
     });
   }
@@ -126,7 +156,7 @@ $(document).ready(function() {
       data: diary
     })
     .done(function() {
-      window.location.href = "/viewdiary?user_id=" + userId;
+      window.location.href = "/view-diary?user_id=" + userId;
     });
   }
 });
