@@ -14,8 +14,7 @@ var sequelize;
 if (config.use_env_variable) {
   console.log('HERE 1, config.use_env_variable = ' + config.use_env_variable);
   console.log('HERE 1, process.env = ' + process.env[config.use_env_variable]);
-  console.log('HERE 1, process.env = ' + process.env.JAWSDB_URL);
-  sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(process.env.JAWSDB_URL, {"dialect": "mysql"});
 } else {
   console.log('HERE 2, config.use_env_variable = ' + config.use_env_variable);
   sequelize = new Sequelize(config.database, config.username, config.password, config);
