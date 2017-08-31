@@ -7,14 +7,11 @@
     "dialect": "mysql"
   },
   "test": {
-    "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "use_env_variable": "JAWSDB_URL"
+
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql",
-    "dialectOptions": {
-      "native": "true"
-    }
+    "use_env_variable": "JAWSDB_URL"
   }
 }
