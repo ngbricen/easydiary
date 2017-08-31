@@ -53,11 +53,20 @@ button.edit, button.public {
 }
 
 .panel.col-md-3.panel-default{
-  margin:20px;
+  margin-right: 20px;
+}
+
+.panel.col-md-3.panel-default:nth-of-type(even){
+  background-color: snow;
+}
+
+.panel.col-md-3.panel-default:nth-of-type(odd){
+  background-color: cornsilk;
 }
 
 .btn{
   padding: 3px 6px;
+  margin-left: 10px;
 }
 
 .panel-default>.panel-heading {
@@ -71,5 +80,73 @@ h3 small{
 }
 
 h5{
+  font-style: italic;
+}
+
+.welcomeInfo {
+  text-align: center;
+  font-style: italic;
+}
+
+.socialMediaIcon {
+  max-width: 16px;
+}
+
+.signUpTitle {
   font-weight: bold;
+}
+
+.footer {
+  padding-bottom: 15px;
+  border-top: 1px solid #dbdbdb;
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+body {
+  background: url("../images/photo2.jpg")repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h2 {
+  text-align: center;
+  font-style: italic;
+}
+
+.navbar-brand {
+  font-size: 250%;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  padding-left: 200px;
+  padding-top: 20px;
+  font-family: serif;
+}
+
+.fixed-panel{
+  height: 100px;
+  overflow-y: scroll;
+}
+
+textarea.form-control {
+    height: 270px;
+}
+input#searchInput.form-control{
+  height: 50px;
+  border-radius: 30px;
+}
+
+a.btn.btn-default{
+  border-radius: 30px;
+  width: 100%;
+  height: 50px;
+  padding-top: 13px;
+  margin-left: 30px;
 }

@@ -167,17 +167,22 @@ $(document).ready(function() {
     
     var newDiaryTitle = $("<br><h3>");
     var newDiaryLink = $("<a>");
-    // var newDiaryDate = $("<br><small>");
+    var newDiaryDate = $("<br><small>");
+    newDiaryDate.text(formattedDate);
     var newDiaryUser = $("<br><h5>");
-    newDiaryUser.text("Written by" + diaries[0].name + " on " + formattedDate);
+    if (userId){
+      newDiaryUser.text(diaries[0].name + " - " + formattedDate);
+    }
+    else{
+      newDiaryUser.text(diary.User.name + " - " + formattedDate); 
+    }
     var newDiaryPanelBody = $("<div>");
-    newDiaryPanelBody.addClass("panel-body");
+    newDiaryPanelBody.addClass("panel-body fixed-panel");
     var newDiaryBody = $("<p>");
     newDiaryLink.text(diary.title);
     newDiaryLink.attr("href","/add-diary?diary_id=" + diary.id + "&user_id=" + userId);
     newDiaryTitle.append(newDiaryLink);
     newDiaryBody.text(diary.body);
-    // newDiaryDate.text(formattedDate);
     // newDiaryTitle.append(newDiaryDate);
     //Only Display edit buttons if the user is logged on
     if (userId){
@@ -209,7 +214,7 @@ $(document).ready(function() {
       .parent()
       .parent()
       .data("Diary");
-    window.location.href = "/add-diary?diary_id=" + currentDiary.id;
+    window.location.href = "/add-diary?diary_id=" + currentDiary.id + "&user_id=" + userId;
   }
 
   // This function figures out which Diary we want to make public and runs the updation
@@ -246,7 +251,7 @@ $(document).ready(function() {
 
   // This function figures out which Diary we want to edit and takes it to the appropriate url
   function handleDiaryLogout() {
-    window.location.href = "/view-diary";
+    window.location.href = "/";
   }
 
   // This function updates the add diary link if the user Id is available
