@@ -27,6 +27,7 @@ module.exports = function(app) {
     // In this case, just db.user
     db.Diary.findAll({
       where: query,
+      order: [['updatedAt', 'DESC']],
       include: [db.User]
     }).then(function(dbDiary) {
       res.json(dbDiary);
@@ -39,7 +40,8 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       },
-      include: [db.Diary]
+      include: [db.Diary],
+      order: [[db.Diary, 'updatedAt', 'DESC']],
     }).then(function(dbDiary) {
       res.json(dbDiary);
     });
